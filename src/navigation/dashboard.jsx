@@ -1,15 +1,14 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { Categories, Products } from '../screens';
+import { Dashboard } from '../screens';
 
 const Stack = createNativeStackNavigator();
 
 const InventoryNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Categories">
-      <Stack.Screen name="Categories" component={Categories} />
-      <Stack.Screen name="Products" component={Products} />
+    <Stack.Navigator initialRouteName="Dashboard">
+      <Stack.Screen name="Dashboard" component={Dashboard} />
     </Stack.Navigator>
   );
 };
