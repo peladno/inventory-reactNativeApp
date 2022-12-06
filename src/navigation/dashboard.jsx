@@ -5,7 +5,7 @@ import { Dashboard } from '../screens';
 
 const Stack = createNativeStackNavigator();
 
-const InventoryNavigator = () => {
+const DashboardNavigator = () => {
   return (
     <Stack.Navigator initialRouteName="Dashboard">
       <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -13,4 +13,4 @@ const InventoryNavigator = () => {
   );
 };
 
-export default InventoryNavigator;
+export default DashboardNavigator;

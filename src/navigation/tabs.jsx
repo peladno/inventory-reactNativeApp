@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
 import { Search } from '../screens';
-import Dashboard from './dashboard';
+import DashboardNavigator from './dashboard';
 import InventoryNavigator from './inventory';
 
 const BottomTab = createBottomTabNavigator();
@@ -13,7 +13,7 @@ const Tabs = () => {
     <BottomTab.Navigator initialRouteName="Invetorytab" screenOptions={{ headerShown: false }}>
       <BottomTab.Screen
         name="Dashboard"
-        component={Dashboard}
+        component={DashboardNavigator}
         options={{
           title: 'Dashboard',
           tabBarIcon: ({ focused }) => (
