@@ -19,8 +19,8 @@ const Tabs = () => {
           fontFamily: 'nunito-bold',
           fontSize: 12,
         },
-        tabBarActiveTintColor: COLORS.text,
-        tabBarInactiveTintColor: COLORS.darkgray,
+        tabBarActiveTintColor: COLORS.primary,
+        tabBarInactiveTintColor: COLORS.darkGray,
       }}>
       <BottomTab.Screen
         name="DashboardTab"
@@ -28,7 +28,11 @@ const Tabs = () => {
         options={{
           title: 'Dashboard',
           tabBarIcon: ({ focused }) => (
-            <Ionicons name={focused ? 'home' : 'home-outline'} size={25} />
+            <Ionicons
+              name={focused ? 'home' : 'home-outline'}
+              size={25}
+              color={focused ? '#0E6BA8' : '#656B61'}
+            />
           ),
         }}
       />
@@ -38,7 +42,11 @@ const Tabs = () => {
         options={{
           title: 'Categories',
           tabBarIcon: ({ focused }) => (
-            <Ionicons name={focused ? 'grid' : 'grid-outline'} size={25} />
+            <Ionicons
+              name={focused ? 'grid' : 'grid-outline'}
+              size={25}
+              color={focused ? '#0E6BA8' : '#656B61'}
+            />
           ),
         }}
       />
@@ -48,7 +56,11 @@ const Tabs = () => {
         options={{
           title: 'Search',
           tabBarIcon: ({ focused }) => (
-            <Ionicons name={focused ? 'search' : 'search-outline'} size={25} />
+            <Ionicons
+              name={focused ? 'search' : 'search-outline'}
+              size={25}
+              color={focused ? '#0E6BA8' : '#656B61'}
+            />
           ),
         }}
       />
