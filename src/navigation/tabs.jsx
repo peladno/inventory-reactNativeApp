@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
+import { COLORS } from '../constants/themes/colors.js';
 import { Search } from '../screens';
 import DashboardNavigator from './dashboard';
 import InventoryNavigator from './inventory';
@@ -10,9 +11,19 @@ const BottomTab = createBottomTabNavigator();
 
 const Tabs = () => {
   return (
-    <BottomTab.Navigator initialRouteName="Invetorytab" screenOptions={{ headerShown: false }}>
+    <BottomTab.Navigator
+      initialRouteName="Invetorytab"
+      screenOptions={{
+        headerShown: false,
+        tabBarLabelStyle: {
+          fontFamily: 'nunito-bold',
+          fontSize: 12,
+        },
+        tabBarActiveTintColor: COLORS.text,
+        tabBarInactiveTintColor: COLORS.darkgray,
+      }}>
       <BottomTab.Screen
-        name="Dashboard"
+        name="DashboardTab"
         component={DashboardNavigator}
         options={{
           title: 'Dashboard',
