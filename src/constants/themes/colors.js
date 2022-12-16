@@ -4,4 +4,6 @@ export const COLORS = {
   text: '#010400',
   darkGray: '#656B61',
   snowWhite: '#FFFBFC',
+  backgroud: '#DCDCDC',
+  white: '#FFFFFF',
 };
