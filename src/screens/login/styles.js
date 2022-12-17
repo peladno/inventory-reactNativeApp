@@ -14,10 +14,10 @@ export const Styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     backgroundColor: COLORS.snowWhite,
-    borderRadius: '10%',
+    borderRadius: 10,
     alignItems: 'center',
     padding: 15,
-    margin: 8,
+    margin: 15,
     width: '75%',
   },
   inputText: {
@@ -30,15 +30,15 @@ export const Styles = StyleSheet.create({
     color: COLORS.darkGray,
   },
   lockIcon: {
-    fontSize: 100,
-    paddingBottom: 30,
+    fontSize: 85,
+    paddingBottom: 15,
   },
   loginButton: {
     alignItems: 'center',
     width: '75%',
     backgroundColor: COLORS.primary,
     padding: 15,
-    borderRadius: '10%',
+    borderRadius: 10,
     margin: 25,
     shadowColor: '#000',
     shadowOffset: {
@@ -68,5 +68,15 @@ export const Styles = StyleSheet.create({
   textAccount: {
     fontFamily: 'nunito-regular',
     fontSize: 15,
+  },
+  welcomeTitle: {
+    fontFamily: 'nunito-bold',
+    fontSize: 30,
+  },
+  welcomeSubtitle: {
+    fontFamily: 'nunito-regular',
+    fontSize: 16,
+    marginTop: 10,
+    marginBottom: 40,
   },
 });
