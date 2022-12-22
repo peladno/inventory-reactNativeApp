@@ -60,6 +60,22 @@ export const Styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'nunito-regular',
   },
+  disabledButton: {
+    alignItems: 'center',
+    width: '75%',
+    backgroundColor: COLORS.darkGray,
+    padding: 15,
+    borderRadius: 10,
+    margin: 25,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+    elevation: 14,
+  },
   loginTextContainer: {
     flexDirection: 'row',
     justifyContent: 'center',

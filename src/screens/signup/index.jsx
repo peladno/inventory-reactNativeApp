@@ -48,7 +48,10 @@ function Signup({ navigation }) {
             onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <TouchableOpacity style={Styles.registerButton} onPress={handleSubmit}>
+        <TouchableOpacity
+          style={!email || !password ? Styles.disabledButton : Styles.registerButton}
+          onPress={handleSubmit}
+          disabled={!email || !password}>
           <Text style={Styles.registerTextButton}>Create Account</Text>
         </TouchableOpacity>
         <View style={Styles.loginTextContainer}>
