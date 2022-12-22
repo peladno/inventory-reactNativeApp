@@ -8,7 +8,7 @@ import { Styles } from './styles';
 
 function Login({ navigation }) {
   return (
-    <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="paddind" enabled>
+    <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="padding" enabled>
       <SafeAreaView style={Styles.formContainer}>
         <Ionicons style={Styles.lockIcon} name="md-lock-open-outline" />
         <Text style={Styles.welcomeTitle}>Welcome back!</Text>

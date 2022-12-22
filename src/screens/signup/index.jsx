@@ -8,7 +8,7 @@ import { Styles } from './styles';
 
 function Signup({ navigation }) {
   return (
-    <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="paddind" enabled>
+    <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="padding" enabled>
       <SafeAreaView style={Styles.signUpContainer}>
         <Ionicons style={Styles.clipboardIcon} name="clipboard-outline" />
         <Text style={Styles.registerTitle}>Create an account</Text>
