@@ -1,12 +1,22 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { KeyboardAvoidingView, Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useDispatch } from 'react-redux';
 
 import { COLORS } from '../../constants/themes/colors';
+import { signUp } from '../../store/actions/index';
 import { Styles } from './styles';
 
 function Signup({ navigation }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    dispatch(signUp(email, password));
+  };
   return (
     <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="padding" enabled>
       <SafeAreaView style={Styles.signUpContainer}>
@@ -21,7 +31,8 @@ function Signup({ navigation }) {
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={() => {}}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
         </View>
         <View style={Styles.inputContainer}>
@@ -33,10 +44,11 @@ function Signup({ navigation }) {
             secureTextEntry
             autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={() => {}}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <TouchableOpacity style={Styles.registerButton} onPress={() => {}}>
+        <TouchableOpacity style={Styles.registerButton} onPress={handleSubmit}>
           <Text style={Styles.registerTextButton}>Create Account</Text>
         </TouchableOpacity>
         <View style={Styles.loginTextContainer}>

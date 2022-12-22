@@ -1,14 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { COLORS } from '../../constants/themes/colors';
+import { isAndroid } from '../../utils/index';
 import { Styles } from './styles';
 
 function Login({ navigation }) {
   return (
-    <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="padding" enabled>
+    <KeyboardAvoidingView
+      style={Styles.keyboardContainer}
+      behavior={isAndroid ? 'height' : 'padding'}
+      enabled>
       <SafeAreaView style={Styles.formContainer}>
         <Ionicons style={Styles.lockIcon} name="md-lock-open-outline" />
         <Text style={Styles.welcomeTitle}>Welcome back!</Text>
@@ -22,7 +26,6 @@ function Login({ navigation }) {
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={() => {}}
           />
         </View>
         <View style={Styles.inputContainer}>
@@ -34,7 +37,6 @@ function Login({ navigation }) {
             secureTextEntry
             autoCapitalize="none"
             autoCorrect={false}
-            onChangeText={() => {}}
           />
         </View>
         <TouchableOpacity style={Styles.loginButton} onPress={() => {}}>

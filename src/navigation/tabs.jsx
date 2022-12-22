@@ -14,6 +14,7 @@ const Tabs = () => {
     <BottomTab.Navigator
       initialRouteName="Invetorytab"
       screenOptions={{
+        headerShown: false,
         tabBarLabelStyle: {
           fontFamily: 'nunito-bold',
           fontSize: 12,
