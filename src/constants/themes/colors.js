@@ -6,4 +6,5 @@ export const COLORS = {
   snowWhite: '#FFFBFC',
   backgroud: '#DCDCDC',
   white: '#FFFFFF',
+  red: '#DB504A',
 };

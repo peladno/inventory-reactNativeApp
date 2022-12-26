@@ -1,7 +1,8 @@
 import React from 'react';
-import { Modal, View, Text, Button } from 'react-native';
+import { Modal, View, Text, TouchableOpacity } from 'react-native';
 
 import ImageSelector from '../imageSelector';
+import { Styles } from './styles';
 
 function ModalForm({ modalVisible, handleModal }) {
   const onImageSelected = (uri) => {
@@ -9,10 +10,12 @@ function ModalForm({ modalVisible, handleModal }) {
   };
   return (
     <Modal visible={modalVisible} animationType="slide">
-      <View>
-        <Text>Modal</Text>
+      <Text>Add product</Text>
+      <View style={Styles.addProductContainer}>
         <ImageSelector onImageSelected={onImageSelected} />
-        <Button onPress={handleModal} title="Cancel" />
+        <TouchableOpacity style={Styles.cancelButton} onPress={handleModal}>
+          <Text style={Styles.cancelText}>Cancel</Text>
+        </TouchableOpacity>
       </View>
     </Modal>
   );

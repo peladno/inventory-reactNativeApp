@@ -2,6 +2,8 @@ import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
 import { Image, View, Text, TouchableOpacity, Alert } from 'react-native';
 
+import { Styles } from './styles';
+
 function ImageSelector({ onImageSelected }) {
   const [imageUrl, setImageUrl] = useState(null);
   const onHandleTakePicture = async () => {
@@ -31,12 +33,16 @@ function ImageSelector({ onImageSelected }) {
     return true;
   };
   return (
-    <View>
-      <View>
-        {!imageUrl ? <Text>No image Selected</Text> : <Image source={{ uri: imageUrl }} />}
+    <View style={Styles.imageSelectorContainer}>
+      <View style={Styles.imageContainer}>
+        {!imageUrl ? (
+          <Text>No image Selected</Text>
+        ) : (
+          <Image style={Styles.productImage} source={{ uri: imageUrl }} />
+        )}
       </View>
-      <TouchableOpacity onPress={onHandleTakePicture}>
-        <Text>Take picture</Text>
+      <TouchableOpacity style={Styles.photoButton} onPress={onHandleTakePicture}>
+        <Text style={Styles.takePicture}>Take picture</Text>
       </TouchableOpacity>
     </View>
   );
