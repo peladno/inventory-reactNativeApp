@@ -19,7 +19,6 @@ export const Styles = StyleSheet.create({
     shadowOpacity: 0.41,
     shadowRadius: 9.11,
     elevation: 14,
-    position: 'absolute',
   },
   addIcon: {
     color: COLORS.snowWhite,

@@ -5,8 +5,8 @@ export const Styles = StyleSheet.create({
     flex: 1,
   },
   addButtonContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    position: 'absolute',
+    bottom: 10,
+    right: -10,
   },
 });
