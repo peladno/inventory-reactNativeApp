@@ -7,7 +7,6 @@ function Categories({ navigation }) {
   return (
     <View style={Styles.categoriesContainer}>
       <Text>Categories</Text>
-      <Button title="Go to Products" onPress={() => navigation.navigate('Products')} />
     </View>
   );
 }

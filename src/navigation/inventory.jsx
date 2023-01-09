@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 const InventoryNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Categories" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Products" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Categories" component={Categories} />
       <Stack.Screen name="Products" component={Products} />
     </Stack.Navigator>

@@ -1,6 +1,8 @@
+import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
-import { Image, View, Text, TouchableOpacity, Alert } from 'react-native';
+import { Image, View, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
+import { COLORS } from '../../constants/themes/colors';
 
 import { Styles } from './styles';
 
@@ -36,14 +38,14 @@ function ImageSelector({ onImageSelected }) {
     <View style={Styles.imageSelectorContainer}>
       <View style={Styles.imageContainer}>
         {!imageUrl ? (
-          <Text>No image Selected</Text>
+          <TouchableOpacity style={Styles.emptyImage} onPress={onHandleTakePicture}>
+            <Text style={Styles.addPhotoText}>Add photo</Text>
+            <Ionicons name="image-outline" size={50} color={COLORS.backgroud} />
+          </TouchableOpacity>
         ) : (
           <Image style={Styles.productImage} source={{ uri: imageUrl }} />
         )}
       </View>
-      <TouchableOpacity style={Styles.photoButton} onPress={onHandleTakePicture}>
-        <Text style={Styles.takePicture}>Take picture</Text>
-      </TouchableOpacity>
     </View>
   );
 }

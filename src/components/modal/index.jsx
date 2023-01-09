@@ -1,6 +1,14 @@
 import React from 'react';
-import { Modal, View, Text, TouchableOpacity } from 'react-native';
+import {
+  Modal,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+  Keyboard,
+} from 'react-native';
 
+import AddProductForm from '../addProductForm';
 import ImageSelector from '../imageSelector';
 import { Styles } from './styles';
 
@@ -10,13 +18,15 @@ function ModalForm({ modalVisible, handleModal }) {
   };
   return (
     <Modal visible={modalVisible} animationType="slide">
-      <Text>Add product</Text>
-      <View style={Styles.addProductContainer}>
-        <ImageSelector onImageSelected={onImageSelected} />
-        <TouchableOpacity style={Styles.cancelButton} onPress={handleModal}>
-          <Text style={Styles.cancelText}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={Styles.addProductContainer}>
+          <ImageSelector onImageSelected={onImageSelected} />
+          <AddProductForm />
+          <TouchableOpacity style={Styles.cancelButton} onPress={handleModal}>
+            <Text style={Styles.cancelText}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 }

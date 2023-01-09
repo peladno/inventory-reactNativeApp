@@ -40,7 +40,7 @@ const Tabs = () => {
         name="InventoryTab"
         component={InventoryNavigator}
         options={{
-          title: 'Categories',
+          title: 'Products',
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name={focused ? 'grid' : 'grid-outline'}
