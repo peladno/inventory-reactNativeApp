@@ -1,7 +1,28 @@
-import { URL_AUTH_SIGN_UP, URL_AUTH_SIGN_IN } from '../../constants/firebase';
-import { authTypes } from '../types/auth.types.js';
+import { createSlice } from '@reduxjs/toolkit';
 
-const { SIGN_IN, SIGN_UP } = authTypes;
+import { URL_AUTH_SIGN_IN, URL_AUTH_SIGN_UP } from '../constants/firebase';
+
+const initialState = {
+  token: null,
+  userId: null,
+};
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  reducers: {
+    login: (state, action) => {
+      state.userId = action.payload;
+      state.token = action.payload;
+    },
+    register: (state, action) => {
+      state.userId = action.payload;
+      state.token = action.payload;
+    },
+  },
+});
+
+export const { login, register } = authSlice.actions;
 
 export const signUp = (email, password) => {
   return async (dispatch) => {
@@ -23,11 +44,12 @@ export const signUp = (email, password) => {
 
       const data = await response.json();
 
-      dispatch({
-        type: SIGN_UP,
-        token: data.idToken,
-        userId: data.localId,
-      });
+      dispatch(
+        register({
+          token: data.idToken,
+          userId: data.localId,
+        })
+      );
     } catch (error) {
       throw error;
     }
@@ -50,13 +72,16 @@ export const signIn = (email, password) => {
       });
 
       const data = await response.json();
-      dispatch({
-        type: SIGN_IN,
-        token: data.idToken,
-        userId: data.localId,
-      });
+      dispatch(
+        login({
+          token: data.idToken,
+          userId: data.localId,
+        })
+      );
     } catch (error) {
       throw error;
     }
   };
 };
+
+export default authSlice.reducer;

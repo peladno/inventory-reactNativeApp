@@ -13,7 +13,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 import { COLORS } from '../../constants/themes/colors';
-import { signUp } from '../../store/actions/index';
+import { signUp } from '../../store/auth.slicer';
 import { Styles } from './styles';
 
 function Signup({ navigation }) {

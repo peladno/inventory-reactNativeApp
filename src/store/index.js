@@ -1,10 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 
-import { authReducer } from './reducers';
+import authReducer from './auth.slicer';
 
-const rootReducer = combineReducers({
-  auth: authReducer,
+export const store = configureStore({
+  reducer: {
+    auth: authReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
-
-export default createStore(rootReducer, applyMiddleware(thunk));
