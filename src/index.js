@@ -3,7 +3,7 @@ import { ActivityIndicator, View, StyleSheet } from 'react-native';
 import { Provider } from 'react-redux';
 
 import AppNavigator from './navigation';
-import store from './store/index';
+import { store } from './store/index';
 
 export default function App() {
   const [loaded] = useFonts({
