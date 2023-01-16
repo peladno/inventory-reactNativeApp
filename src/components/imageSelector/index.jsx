@@ -3,7 +3,6 @@ import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
 import { Image, View, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
 import { COLORS } from '../../constants/themes/colors';
-
 import { Styles } from './styles';
 
 function ImageSelector({ onImageSelected }) {
@@ -18,8 +17,6 @@ function ImageSelector({ onImageSelected }) {
       quality: 0.7,
     });
 
-    console.log('image', image);
-
     setImageUrl(image.uri);
     onImageSelected(image.uri);
   };
@@ -27,7 +24,7 @@ function ImageSelector({ onImageSelected }) {
   const verifyPermissions = async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status !== 'granted') {
-      Alert.alert('insufficient permissions', 'You need permisions to use the camera', [
+      Alert.alert('Insufficient permissions', 'You need permisions to use the camera', [
         { text: 'OK' },
       ]);
       return false;

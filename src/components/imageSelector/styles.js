@@ -18,7 +18,7 @@ export const Styles = StyleSheet.create({
   imageSelectorContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   takePicture: {
     color: COLORS.snowWhite,

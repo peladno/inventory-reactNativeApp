@@ -54,4 +54,18 @@ export const Styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'nunito-regular',
   },
+  locationButton: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    width: '100%',
+    marginBottom: 10,
+  },
+  locationIcon: {
+    fontSize: 25,
+    color: COLORS.primary,
+  },
+  locationText: {
+    fontSize: 20,
+  },
 });
