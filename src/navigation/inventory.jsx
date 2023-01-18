@@ -8,14 +8,10 @@ const Stack = createNativeStackNavigator();
 
 const InventoryNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName="Products" screenOptions={{ headerShown: false }}>
+    <Stack.Navigator initialRouteName="Products">
       <Stack.Screen name="Categories" component={Categories} />
-      <Stack.Screen name="Products" component={Products} options={{ title: 'Product List' }} />
-      <Stack.Screen
-        name="ProductDetail"
-        component={ProductDetail}
-        options={{ title: 'Products List' }}
-      />
+      <Stack.Screen name="Products" component={Products} />
+      <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
   );
 };

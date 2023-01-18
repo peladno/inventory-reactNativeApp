@@ -26,10 +26,9 @@ function LocationSelector({ onLocationPicker }) {
       timeout: 5000,
     });
 
-    setLocationPicker({ lat: latitude, lng: longitude });
-
     const { latitude, longitude } = location.coords;
 
+    setLocationPicker({ lat: latitude, lng: longitude });
     onLocationPicker({ lat: latitude, lng: longitude });
   };
   return (
@@ -41,7 +40,9 @@ function LocationSelector({ onLocationPicker }) {
       {!locationPicker ? (
         <Text style={Styles.noLocationText}>No location selected</Text>
       ) : (
-        <Text>`${locationPicker.lat}`</Text>
+        <Text>
+          {`${locationPicker.lat}`}, {`${locationPicker.lng}`}
+        </Text>
       )}
     </View>
   );

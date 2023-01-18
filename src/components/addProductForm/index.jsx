@@ -11,16 +11,21 @@ import { Styles } from './styles';
 
 function AddProductForm() {
   const [quantity, setQuantity] = useState('');
-  const [itemName, setItemName] = useState(null);
+  const [name, setName] = useState(null);
   const [image, setImage] = useState('');
+  const [coords, setCoords] = useState(null);
   const dispatch = useDispatch();
 
   const onHandleSubmit = () => {
-    dispatch(saveItem({ itemName, image, quantity }));
+    dispatch(saveItem({ name, image, quantity, coords }));
   };
 
   const onImageSelected = (uri) => {
     setImage(uri);
+  };
+
+  const onLocationPicker = (location) => {
+    setCoords(location);
   };
 
   return (
@@ -30,7 +35,7 @@ function AddProductForm() {
       enabled>
       <SafeAreaView style={Styles.formContainer}>
         <ImageSelector onImageSelected={onImageSelected} />
-        <LocationSelector />
+        <LocationSelector onLocationPicker={onLocationPicker} />
         <View style={Styles.inputContainer}>
           <Text style={Styles.placeHolder}>Quantity</Text>
           <TextInput
@@ -50,8 +55,8 @@ function AddProductForm() {
             placeholderTextColor={COLORS.darkGray}
             autoCorrect={false}
             maxLength={25}
-            value={itemName}
-            onChangeText={(text) => setItemName(text)}
+            value={name}
+            onChangeText={(text) => setName(text)}
           />
         </View>
         <TouchableOpacity style={Styles.addItemButton} onPress={onHandleSubmit}>

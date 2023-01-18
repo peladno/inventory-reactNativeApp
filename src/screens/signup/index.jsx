@@ -17,8 +17,8 @@ import { signUp } from '../../store/auth.slice';
 import { Styles } from './styles';
 
 function Signup({ navigation }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
 
   const dispatch = useDispatch();
 

@@ -12,12 +12,12 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.userId = action.payload;
-      state.token = action.payload;
+      state.userId = action.payload.userId;
+      state.token = action.payload.token;
     },
     register: (state, action) => {
-      state.userId = action.payload;
-      state.token = action.payload;
+      state.userId = action.payload.userId;
+      state.token = action.payload.token;
     },
   },
 });
@@ -74,8 +74,8 @@ export const signIn = (email, password) => {
       const data = await response.json();
       dispatch(
         login({
-          token: data.idToken,
           userId: data.localId,
+          token: data.idToken,
         })
       );
     } catch (error) {
