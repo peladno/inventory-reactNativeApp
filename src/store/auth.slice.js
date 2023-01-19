@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createSlice } from '@reduxjs/toolkit';
 
 import { URL_AUTH_SIGN_IN, URL_AUTH_SIGN_UP } from '../constants/firebase';
@@ -19,10 +20,14 @@ const authSlice = createSlice({
       state.userId = action.payload.userId;
       state.token = action.payload.token;
     },
+    logout: (state, action) => {
+      state.token = null;
+      state.userId = null;
+    },
   },
 });
 
-export const { login, register } = authSlice.actions;
+export const { login, register, logout } = authSlice.actions;
 
 export const signUp = (email, password) => {
   return async (dispatch) => {
@@ -43,7 +48,7 @@ export const signUp = (email, password) => {
       }
 
       const data = await response.json();
-
+      await AsyncStorage.setItem('token', data.idToken);
       dispatch(
         register({
           token: data.idToken,
@@ -72,12 +77,24 @@ export const signIn = (email, password) => {
       });
 
       const data = await response.json();
+      await AsyncStorage.setItem('token', data.idToken);
       dispatch(
         login({
           userId: data.localId,
           token: data.idToken,
         })
       );
+    } catch (error) {
+      throw error;
+    }
+  };
+};
+
+export const removeToken = () => {
+  return async (dispatch) => {
+    try {
+      await AsyncStorage.removeItem('token');
+      dispatch(logout());
     } catch (error) {
       throw error;
     }

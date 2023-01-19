@@ -16,7 +16,7 @@ function ModalForm({ modalVisible, handleModal }) {
     <Modal visible={modalVisible} animationType="slide">
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={Styles.addProductContainer}>
-          <AddProductForm />
+          <AddProductForm handleModal={handleModal} />
           <TouchableOpacity style={Styles.cancelButton} onPress={handleModal}>
             <Text style={Styles.cancelText}>Cancel</Text>
           </TouchableOpacity>

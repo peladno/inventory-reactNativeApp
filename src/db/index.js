@@ -1,0 +1,45 @@
+import * as SQLite from 'expo-sqlite';
+
+const db = SQLite.openDatabase('products.db');
+
+export const init = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY NOT NULL, name TEXT NOT NULL, image TEXT NOT NULL, quantity TEXT NOT NULL, address TEXT NOT NULL, coords TEXT NOT NULL);',
+        [],
+        () => resolve(),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};
+
+export const insertProduct = (name, image, quantity, address, coords) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'INSERT INTO items (name, image, quantity, address, coords) VALUES (?, ?, ?, ?, ?);',
+        [name, image, quantity, address, JSON.stringify(coords)],
+        (_, result) => resolve(result),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};
+
+export const getItems = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM items',
+        [],
+        (_, result) => resolve(result),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};

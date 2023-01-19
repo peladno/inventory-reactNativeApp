@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { URL_GEO } from '../constants/firebase/index';
+import { getItems, insertProduct } from '../db';
 import Product from '../models/products';
 
 const initialState = {
@@ -13,7 +14,7 @@ const itemSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const newItem = new Product(
-        Date.now().toString(),
+        action.payload.id,
         action.payload.name,
         action.payload.image,
         action.payload.quantity,
@@ -22,8 +23,13 @@ const itemSlice = createSlice({
       );
       state.items.push(newItem);
     },
+    setItems: (state, action) => {
+      state.items = action.payload;
+    },
   },
 });
+
+export const { addItem, setItems } = itemSlice.actions;
 
 export const saveItem = ({ name, image, quantity, coords }) => {
   return async (dispatch) => {
@@ -37,8 +43,9 @@ export const saveItem = ({ name, image, quantity, coords }) => {
       if (!data.results) throw new Error('Couldn`t find the location');
 
       const address = data.results[0].formatted_address;
+      const result = await insertProduct(name, image, quantity, address, coords);
 
-      dispatch(addItem({ name, image, quantity, coords, address }));
+      dispatch(addItem({ id: result.insertId, name, image, quantity, coords, address }));
     } catch (error) {
       console.log(error);
       throw error;
@@ -46,6 +53,16 @@ export const saveItem = ({ name, image, quantity, coords }) => {
   };
 };
 
-export const { addItem } = itemSlice.actions;
+export const loadItems = () => {
+  return async (dispatch) => {
+    try {
+      const result = await getItems();
+      dispatch(setItems(result?.rows?._array));
+    } catch (error) {
+      console.warn(error);
+      throw error;
+    }
+  };
+};
 
 export default itemSlice.reducer;

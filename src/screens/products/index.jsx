@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AddButton, Product, ModalForm } from '../../components/index';
+import { loadItems } from '../../store/item.slice';
 import { Styles } from './styles';
 
 function Products({ navigation }) {
   const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch();
+
   const handleModal = () => {
     setModalVisible(!modalVisible);
   };
   const items = useSelector((state) => state.item.items);
+
+  useEffect(() => {
+    dispatch(loadItems());
+  }, [dispatch]);
 
   const renderItem = ({ item }) => (
     <Product

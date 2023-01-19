@@ -9,7 +9,7 @@ import { isAndroid } from '../../utils/index';
 import { ImageSelector, LocationSelector } from '../index';
 import { Styles } from './styles';
 
-function AddProductForm() {
+function AddProductForm({ handleModal }) {
   const [quantity, setQuantity] = useState('');
   const [name, setName] = useState(null);
   const [image, setImage] = useState('');
@@ -18,6 +18,7 @@ function AddProductForm() {
 
   const onHandleSubmit = () => {
     dispatch(saveItem({ name, image, quantity, coords }));
+    handleModal();
   };
 
   const onImageSelected = (uri) => {
