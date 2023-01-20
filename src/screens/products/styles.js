@@ -12,8 +12,4 @@ export const Styles = StyleSheet.create({
     bottom: 10,
     right: -10,
   },
-  productListContainer: {
-    width: '100%',
-    flex: 1,
-  },
 });

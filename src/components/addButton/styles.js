@@ -6,11 +6,11 @@ export const Styles = StyleSheet.create({
   addProductButton: {
     alignItems: 'center',
     right: 20,
-    height: 80,
-    width: 80,
+    height: 65,
+    width: 65,
     backgroundColor: COLORS.primary,
-    padding: 23,
-    borderRadius: 50,
+    padding: 16,
+    borderRadius: 40,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
 import { COLORS } from '../../constants/themes/colors';
 import { saveItem } from '../../store/item.slice';
 import { isAndroid } from '../../utils/index';
-import { ImageSelector, LocationSelector } from '../index';
+//import { ImageSelector, LocationSelector } from '../index';
+import ImageSelector from '../imageSelector/index';
+import LocationSelector from '../locationSelector/index';
 import { Styles } from './styles';
 
 function AddProductForm({ handleModal }) {
-  const [quantity, setQuantity] = useState('');
+  const [quantity, setQuantity] = useState(null);
   const [name, setName] = useState(null);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
   const [coords, setCoords] = useState(null);
   const dispatch = useDispatch();
 
   const onHandleSubmit = () => {
-    dispatch(saveItem({ name, image, quantity, coords }));
-    handleModal();
+    if (!name || !image || !quantity || !coords) {
+      Alert.alert('Please fill out all fields.');
+    } else {
+      dispatch(saveItem({ name, image, quantity, coords }));
+      handleModal();
+    }
   };
 
   const onImageSelected = (uri) => {

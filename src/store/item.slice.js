@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { URL_GEO } from '../constants/firebase/index';
-import { getItems, insertProduct } from '../db';
+import { getItems, insertProduct, deleteProduct, searchProducts, getRandomItems } from '../db';
 import Product from '../models/products';
 
 const initialState = {
   items: [],
+  random: [],
 };
 
 const itemSlice = createSlice({
@@ -26,10 +27,19 @@ const itemSlice = createSlice({
     setItems: (state, action) => {
       state.items = action.payload;
     },
+    deleteItem: (state, action) => {
+      state.items = state.items.filter((item) => item.id !== action.payload);
+    },
+    searchItems: (state, action) => {
+      state.items = action.payload;
+    },
+    setRandomItems: (state, action) => {
+      state.random = action.payload;
+    },
   },
 });
 
-export const { addItem, setItems } = itemSlice.actions;
+export const { addItem, setItems, deleteItem, searchItems, setRandomItems } = itemSlice.actions;
 
 export const saveItem = ({ name, image, quantity, coords }) => {
   return async (dispatch) => {
@@ -60,6 +70,42 @@ export const loadItems = () => {
       dispatch(setItems(result?.rows?._array));
     } catch (error) {
       console.warn(error);
+      throw error;
+    }
+  };
+};
+
+export const deleteItemThunk = (id) => {
+  return async (dispatch) => {
+    try {
+      await deleteProduct(id);
+      dispatch(deleteItem(id));
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+};
+
+export const searchItem = (searchTerm) => {
+  return async (dispatch) => {
+    try {
+      const result = await searchProducts(searchTerm);
+      dispatch(searchItems(result?.rows?._array));
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+};
+
+export const loadRandomItems = (count) => {
+  return async (dispatch) => {
+    try {
+      const result = await getRandomItems(count);
+      dispatch(setRandomItems(result?.rows?._array));
+    } catch (error) {
+      console.log(error);
       throw error;
     }
   };

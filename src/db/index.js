@@ -43,3 +43,45 @@ export const getItems = () => {
   });
   return promise;
 };
+
+export const deleteProduct = (id) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'DELETE FROM items WHERE id = ?;',
+        [id],
+        (_, result) => resolve(result),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};
+
+export const searchProducts = (searchTerm) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM items WHERE name LIKE ?',
+        [`%${searchTerm}%`],
+        (_, result) => resolve(result),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};
+
+export const getRandomItems = (count) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `SELECT * FROM items ORDER BY RANDOM() LIMIT ?`,
+        [count],
+        (_, result) => resolve(result),
+        (_, err) => reject(err)
+      );
+    });
+  });
+  return promise;
+};

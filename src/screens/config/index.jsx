@@ -1,4 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch } from 'react-redux';
@@ -10,7 +9,6 @@ function Config({ navigation }) {
 
   const logout = async () => {
     try {
-      await AsyncStorage.removeItem('token');
       dispatch(removeToken());
     } catch (error) {
       throw error;

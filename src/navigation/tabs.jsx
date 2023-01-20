@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
 import { COLORS } from '../constants/themes/colors.js';
-import { Search } from '../screens';
 import DashboardNavigator from './dashboard';
 import InventoryNavigator from './inventory';
+import SettingNavigator from './setting.jsx';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -51,13 +51,13 @@ const Tabs = () => {
         }}
       />
       <BottomTab.Screen
-        name="Search"
-        component={Search}
+        name="SettingTab"
+        component={SettingNavigator}
         options={{
-          title: 'Search',
+          title: 'Settings',
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'search' : 'search-outline'}
+              name={focused ? 'grid' : 'grid-outline'}
               size={25}
               color={focused ? '#0E6BA8' : '#656B61'}
             />

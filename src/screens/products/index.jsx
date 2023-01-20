@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AddButton, Product, ModalForm } from '../../components/index';
+import { AddButton, ModalForm, ProductList } from '../../components/index';
 import { loadItems } from '../../store/item.slice';
 import { Styles } from './styles';
 
@@ -20,26 +19,14 @@ function Products({ navigation }) {
     dispatch(loadItems());
   }, [dispatch]);
 
-  const renderItem = ({ item }) => (
-    <Product
-      {...item}
-      onSelect={() => navigation.navigate('ProductDetail', { productId: item.id })}
-    />
-  );
-
   return (
-    <SafeAreaView style={Styles.productsContainer}>
-      <FlatList
-        style={Styles.productListContainer}
-        data={items}
-        keyExtractor={(item) => item.id}
-        renderItem={renderItem}
-      />
+    <View style={Styles.productsContainer}>
+      <ProductList items={items} navigation={navigation} />
       <View style={Styles.addButtonContainer}>
         <AddButton handleModal={handleModal} />
         <ModalForm modalVisible={modalVisible} handleModal={handleModal} />
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 

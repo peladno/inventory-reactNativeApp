@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { useSelector } from 'react-redux';
 
+import { ProductList } from '../../components';
 import { Styles } from './styles';
 
-function Search() {
+function Search({ navigation }) {
+  const items = useSelector((state) => state.item.items);
+
   return (
     <View style={Styles.searchContainer}>
-      <Text>Search</Text>
+      <ProductList items={items} navigation={navigation} />
     </View>
   );
 }

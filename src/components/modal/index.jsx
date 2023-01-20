@@ -8,7 +8,8 @@ import {
   Keyboard,
 } from 'react-native';
 
-import AddProductForm from '../addProductForm';
+//import { AddProductForm } from '../index';
+import AddProductForm from '../addProductForm/index';
 import { Styles } from './styles';
 
 function ModalForm({ modalVisible, handleModal }) {

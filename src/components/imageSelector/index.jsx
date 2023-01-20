@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import React, { useState } from 'react';
-import { Image, View, Text, TouchableOpacity, Alert, SafeAreaView } from 'react-native';
+import { Image, View, Text, TouchableOpacity, Alert } from 'react-native';
+
 import { COLORS } from '../../constants/themes/colors';
 import { Styles } from './styles';
 
 function ImageSelector({ onImageSelected }) {
   const [imageUrl, setImageUrl] = useState(null);
+
   const onHandleTakePicture = async () => {
     const isCameraPermissions = await verifyPermissions();
     if (!isCameraPermissions) return;
@@ -17,8 +19,8 @@ function ImageSelector({ onImageSelected }) {
       quality: 0.7,
     });
 
-    setImageUrl(image.uri);
-    onImageSelected(image.uri);
+    setImageUrl(image.assets[0].uri);
+    onImageSelected(image.assets[0].uri);
   };
 
   const verifyPermissions = async () => {

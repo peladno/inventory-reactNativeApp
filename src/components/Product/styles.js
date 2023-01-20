@@ -5,10 +5,18 @@ import { COLORS } from '../../constants/themes/colors';
 export const Styles = StyleSheet.create({
   productContainer: {
     flexDirection: 'row',
-    marginHorizontal: 20,
+    marginHorizontal: 10,
     backgroundColor: COLORS.snowWhite,
     borderRadius: 10,
     marginBottom: 15,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+    elevation: 10,
   },
   imageProduct: {
     width: 90,
@@ -22,7 +30,7 @@ export const Styles = StyleSheet.create({
   },
   nameProduct: {
     fontFamily: 'nunito-bold',
-    color: COLORS.text,
+    color: COLORS.primary,
     fontSize: 25,
   },
   address: {
