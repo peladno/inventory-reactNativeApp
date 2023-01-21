@@ -16,13 +16,15 @@ function AddProductForm({ handleModal }) {
   const [name, setName] = useState(null);
   const [image, setImage] = useState(null);
   const [coords, setCoords] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [description, setDescription] = useState(null);
   const dispatch = useDispatch();
 
   const onHandleSubmit = () => {
-    if (!name || !image || !quantity || !coords) {
+    if (!name || !image || !quantity || !coords || !category || !description) {
       Alert.alert('Please fill out all fields.');
     } else {
-      dispatch(saveItem({ name, image, quantity, coords }));
+      dispatch(saveItem({ name, image, quantity, coords, category, description }));
       handleModal();
     }
   };
@@ -56,14 +58,35 @@ function AddProductForm({ handleModal }) {
           />
         </View>
         <View style={Styles.inputContainer}>
-          <Text style={Styles.placeHolder}>Item name</Text>
+          <Text style={Styles.placeHolder}>Name</Text>
           <TextInput
             style={Styles.inputText}
             placeholderTextColor={COLORS.darkGray}
-            autoCorrect={false}
             maxLength={25}
             value={name}
             onChangeText={(text) => setName(text)}
+          />
+        </View>
+        <View style={Styles.inputContainer}>
+          <Text style={Styles.placeHolder}>Category</Text>
+          <TextInput
+            style={Styles.inputText}
+            placeholderTextColor={COLORS.darkGray}
+            autoCapitalize="characters"
+            maxLength={20}
+            value={category}
+            onChangeText={(text) => setCategory(text)}
+          />
+        </View>
+        <View style={Styles.descriptionContainer}>
+          <Text style={Styles.placeHolderDescription}>Description</Text>
+          <TextInput
+            style={Styles.inputTextDescription}
+            multiline
+            placeholderTextColor={COLORS.darkGray}
+            maxLength={100}
+            value={description}
+            onChangeText={(text) => setDescription(text)}
           />
         </View>
         <TouchableOpacity style={Styles.addItemButton} onPress={onHandleSubmit}>

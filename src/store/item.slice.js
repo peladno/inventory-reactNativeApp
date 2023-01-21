@@ -20,7 +20,9 @@ const itemSlice = createSlice({
         action.payload.image,
         action.payload.quantity,
         action.payload.address,
-        action.payload.coords
+        action.payload.coords,
+        action.payload.category,
+        action.payload.description
       );
       state.items.push(newItem);
     },
@@ -41,7 +43,7 @@ const itemSlice = createSlice({
 
 export const { addItem, setItems, deleteItem, searchItems, setRandomItems } = itemSlice.actions;
 
-export const saveItem = ({ name, image, quantity, coords }) => {
+export const saveItem = ({ name, image, quantity, coords, category, description }) => {
   return async (dispatch) => {
     try {
       const response = await fetch(URL_GEO(coords?.lat, coords?.lng));
@@ -53,9 +55,28 @@ export const saveItem = ({ name, image, quantity, coords }) => {
       if (!data.results) throw new Error('Couldn`t find the location');
 
       const address = data.results[0].formatted_address;
-      const result = await insertProduct(name, image, quantity, address, coords);
+      const result = await insertProduct(
+        name,
+        image,
+        quantity,
+        address,
+        coords,
+        category,
+        description
+      );
 
-      dispatch(addItem({ id: result.insertId, name, image, quantity, coords, address }));
+      dispatch(
+        addItem({
+          id: result.insertId,
+          name,
+          image,
+          quantity,
+          coords,
+          address,
+          category,
+          description,
+        })
+      );
     } catch (error) {
       console.log(error);
       throw error;

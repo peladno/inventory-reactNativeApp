@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import { COLORS } from '../../constants/themes/colors';
 export const Styles = StyleSheet.create({
@@ -20,13 +19,29 @@ export const Styles = StyleSheet.create({
     marginBottom: 15,
     width: 300,
   },
+  descriptionContainer: {
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    backgroundColor: COLORS.snowWhite,
+    borderRadius: 10,
+    alignItems: 'flex-start',
+    marginBottom: 15,
+    padding: 8,
+    width: 300,
+    height: 150,
+  },
   inputText: {
     fontSize: 20,
     fontFamily: 'nunito-regular',
     width: '50%',
     borderLeftWidth: 2,
     borderLeftColor: COLORS.backgroud,
-    textAlign: 'center',
+    paddingLeft: 10,
+  },
+  inputTextDescription: {
+    fontSize: 20,
+    fontFamily: 'nunito-regular',
+    width: '100%',
   },
   addItemButton: {
     alignItems: 'center',
@@ -53,6 +68,13 @@ export const Styles = StyleSheet.create({
     width: '50%',
     fontSize: 18,
     fontFamily: 'nunito-regular',
+  },
+  placeHolderDescription: {
+    width: '100%',
+    fontSize: 18,
+    fontFamily: 'nunito-regular',
+    borderBottomWidth: 2,
+    borderBottomColor: COLORS.backgroud,
   },
   locationButton: {
     flexDirection: 'row',

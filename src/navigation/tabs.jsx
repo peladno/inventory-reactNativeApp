@@ -57,7 +57,7 @@ const Tabs = () => {
           title: 'Settings',
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'grid' : 'grid-outline'}
+              name={focused ? 'ios-settings' : 'ios-settings-outline'}
               size={25}
               color={focused ? '#0E6BA8' : '#656B61'}
             />

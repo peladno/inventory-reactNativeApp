@@ -1,26 +1,24 @@
 import React from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { FlatList } from 'react-native';
 
-import { removeToken } from '../../store/auth.slice';
+import ItemFromList from '../../components/itemFromList';
+import { Styles } from './styles';
 
 function Config({ navigation }) {
-  const dispatch = useDispatch();
-
-  const logout = async () => {
-    try {
-      dispatch(removeToken());
-    } catch (error) {
-      throw error;
-    }
-  };
-
+  const items = [{ id: 1, name: 'Logout' }];
+  const renderItem = ({ item }) => (
+    <ItemFromList
+      {...item}
+      onSelect={() => navigation.navigate(`${item.name}`, { productId: item.id })}
+    />
+  );
   return (
-    <View>
-      <TouchableOpacity onPress={logout}>
-        <Text>LogOut</Text>
-      </TouchableOpacity>
-    </View>
+    <FlatList
+      style={Styles.menuItemContainer}
+      data={items}
+      keyExtractor={(item) => item.id}
+      renderItem={renderItem}
+    />
   );
 }
 

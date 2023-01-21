@@ -14,12 +14,7 @@ function RandomItems({ count, navigation }) {
 
   const items = useSelector((state) => state.item.random);
 
-  const renderItem = ({ item }) => (
-    <Product
-      {...item}
-      onSelect={() => navigation.navigate('ProductDetail', { productId: item.id })}
-    />
-  );
+  const renderItem = ({ item }) => <Product {...item} />;
   return (
     <FlatList data={items} renderItem={renderItem} keyExtractor={(item) => item.id.toString()} />
   );
