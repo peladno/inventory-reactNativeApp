@@ -21,14 +21,12 @@ function Dashboard({ navigation }) {
         <Text style={Styles.subNumber}>Number of items:</Text>
         <Text style={Styles.number}>{`${items.length}`}</Text>
       </View>
-      <View style={Styles.randomItemsContainer}>
-        <Text style={Styles.randomSubtitle}>These are some of your items:</Text>
-        {items.length === 0 ? (
-          <Text style={Styles.noItemText}>No items yet</Text>
-        ) : (
-          <RandomItems count={2} navigation={navigation} />
-        )}
-      </View>
+      <Text style={Styles.randomSubtitle}>These are some of your items:</Text>
+      {items.length === 0 ? (
+        <Text style={Styles.noItemText}>No items yet</Text>
+      ) : (
+        <RandomItems count={2} navigation={navigation} />
+      )}
     </View>
   );
 }

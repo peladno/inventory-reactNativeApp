@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  View,
+  Text,
+  TextInput,
+  KeyboardAvoidingView,
+  TouchableOpacity,
+  Alert,
+  SafeAreaView,
+} from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { COLORS } from '../../constants/themes/colors';
@@ -91,6 +98,9 @@ function AddProductForm({ handleModal }) {
         </View>
         <TouchableOpacity style={Styles.addItemButton} onPress={onHandleSubmit}>
           <Text style={Styles.saveText}>Save</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={Styles.cancelButton} onPress={handleModal}>
+          <Text style={Styles.cancelText}>Cancel</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </KeyboardAvoidingView>

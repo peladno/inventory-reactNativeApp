@@ -7,4 +7,5 @@ export const COLORS = {
   backgroud: '#DCDCDC',
   white: '#FFFFFF',
   red: '#DB504A',
+  transparentBackground: 'rgba(0, 0, 0, 0.8)',
 };

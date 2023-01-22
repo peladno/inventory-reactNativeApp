@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Modal,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-  Keyboard,
-} from 'react-native';
+import { Modal, TouchableWithoutFeedback, View, Keyboard } from 'react-native';
 
 //import { AddProductForm } from '../index';
 import AddProductForm from '../addProductForm/index';
@@ -18,9 +11,6 @@ function ModalForm({ modalVisible, handleModal }) {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={Styles.addProductContainer}>
           <AddProductForm handleModal={handleModal} />
-          <TouchableOpacity style={Styles.cancelButton} onPress={handleModal}>
-            <Text style={Styles.cancelText}>Cancel</Text>
-          </TouchableOpacity>
         </View>
       </TouchableWithoutFeedback>
     </Modal>

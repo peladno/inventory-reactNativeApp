@@ -28,7 +28,7 @@ export const Styles = StyleSheet.create({
     marginBottom: 15,
     padding: 8,
     width: 300,
-    height: 150,
+    height: 130,
   },
   inputText: {
     fontSize: 20,
@@ -89,5 +89,27 @@ export const Styles = StyleSheet.create({
   },
   locationText: {
     fontSize: 20,
+  },
+  cancelButton: {
+    alignItems: 'center',
+    width: 300,
+    backgroundColor: COLORS.red,
+    padding: 8,
+    marginBottom: 15,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.41,
+    shadowRadius: 9.11,
+    elevation: 14,
+  },
+  cancelText: {
+    color: COLORS.snowWhite,
+    textAlign: 'center',
+    fontSize: 18,
+    fontFamily: 'nunito-bold',
   },
 });

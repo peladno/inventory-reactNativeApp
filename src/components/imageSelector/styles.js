@@ -5,7 +5,7 @@ import { COLORS } from '../../constants/themes/colors';
 export const Styles = StyleSheet.create({
   productImage: {
     borderColor: COLORS.primary,
-    height: 200,
+    height: 180,
     width: 300,
   },
   photoButton: {
@@ -25,7 +25,7 @@ export const Styles = StyleSheet.create({
     fontFamily: 'nunito-regular',
   },
   emptyImage: {
-    height: 200,
+    height: 180,
     width: 300,
     justifyContent: 'center',
     alignItems: 'center',
