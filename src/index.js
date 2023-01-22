@@ -1,10 +1,20 @@
 import { useFonts } from 'expo-font';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import { ActivityIndicator, SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux';
 
 import { init } from './db';
 import AppNavigator from './navigation';
 import { store } from './store/index';
+import { Styles } from './styles';
+
+init()
+  .then(() => {
+    console.log('SQL database initialized');
+  })
+  .catch((err) => {
+    console.log('Initilized failed');
+    console.log(err);
+  });
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,20 +24,11 @@ export default function App() {
 
   if (!loaded) {
     return (
-      <View styles={styles.container}>
+      <SafeAreaView styles={Styles.container}>
         <ActivityIndicator color="#62BBC1" size="large" />
-      </View>
+      </SafeAreaView>
     );
   }
-
-  init()
-    .then(() => {
-      console.log('SQL database initialized');
-    })
-    .catch((err) => {
-      console.log('Initilized failed');
-      console.log(err);
-    });
 
   return (
     <Provider store={store}>
@@ -35,11 +36,3 @@ export default function App() {
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});

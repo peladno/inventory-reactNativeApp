@@ -1,9 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import {
   KeyboardAvoidingView,
   Text,
-  TextInput,
   View,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -12,55 +11,98 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
+import { Input } from '../../components';
 import { COLORS } from '../../constants/themes/colors';
 import { signUp } from '../../store/auth.slice';
+import { UPDATED_FORM, onInputChange } from '../../utils/form/index';
+import { isAndroid } from '../../utils/index';
 import { Styles } from './styles';
 
 function Signup({ navigation }) {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const initialState = {
+    email: { value: '', error: '', touched: false, hasError: true },
+    password: { value: '', error: '', touched: false, hasError: true },
+    isFormValid: false,
+  };
 
+  const formReducer = (state, action) => {
+    switch (action.type) {
+      case UPDATED_FORM:
+        const { name, value, hasError, error, touched, isFormValid } = action.data;
+        return {
+          ...state,
+          [name]: {
+            ...state[name],
+            value,
+            hasError,
+            error,
+            touched,
+          },
+          isFormValid,
+        };
+      default:
+        return state;
+    }
+  };
+
+  const [formState, dispatchFormState] = useReducer(formReducer, initialState);
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(signUp(email, password));
+    dispatch(signUp(formState.email.value, formState.password.value));
+  };
+  const onHandleChangeInput = (value, type) => {
+    onInputChange(type, value, dispatchFormState, formState);
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <KeyboardAvoidingView style={Styles.keyboardContainer} behavior="padding" enabled>
+      <KeyboardAvoidingView
+        style={Styles.keyboardContainer}
+        behavior={isAndroid ? 'height' : 'padding'}
+        enabled>
         <SafeAreaView style={Styles.signUpContainer}>
           <Ionicons style={Styles.clipboardIcon} name="clipboard-outline" />
           <Text style={Styles.registerTitle}>Create an account</Text>
           <View style={Styles.inputContainer}>
             <Ionicons name="mail-outline" style={Styles.iconInput} />
-            <TextInput
-              style={Styles.inputText}
-              placeholder="Email ID"
+            <Input
+              placeholder="Email"
               placeholderTextColor={COLORS.darkGray}
               keyboardType="email-address"
+              maxLength={50}
               autoCapitalize="none"
               autoCorrect={false}
-              value={email}
-              onChangeText={(text) => setEmail(text)}
+              value={formState.email.value}
+              hasError={formState.email.hasError}
+              error={formState.email.error}
+              touched={formState.email.touched}
+              onChangeText={(text) => onHandleChangeInput(text, 'email')}
             />
           </View>
           <View style={Styles.inputContainer}>
             <Ionicons name="key" style={Styles.iconInput} />
-            <TextInput
-              style={Styles.inputText}
+            <Input
               placeholder="Password"
               placeholderTextColor={COLORS.darkGray}
               secureTextEntry
+              maxLength={10}
               autoCapitalize="none"
               autoCorrect={false}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
+              value={formState.password.value}
+              hasError={formState.password.hasError}
+              error={formState.password.error}
+              touched={formState.password.touched}
+              onChangeText={(text) => onHandleChangeInput(text, 'password')}
             />
           </View>
           <TouchableOpacity
-            style={!email || !password ? Styles.disabledButton : Styles.registerButton}
+            style={
+              !formState.email.value || !formState.password.value
+                ? Styles.disabledButton
+                : Styles.registerButton
+            }
             onPress={handleSubmit}
-            disabled={!email || !password}>
+            disabled={!formState.email.value || !formState.password.value}>
             <Text style={Styles.registerTextButton}>Create Account</Text>
           </TouchableOpacity>
           <View style={Styles.loginTextContainer}>

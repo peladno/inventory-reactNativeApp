@@ -1,30 +1,60 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import {
   View,
   Text,
-  TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
+  SafeAreaView,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 
+import { Input } from '../../components';
 import { COLORS } from '../../constants/themes/colors';
 import { signIn } from '../../store/auth.slice';
+import { UPDATED_FORM, onInputChange } from '../../utils/form/index';
 import { isAndroid } from '../../utils/index';
 import { Styles } from './styles';
 
 function Login({ navigation }) {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const initialState = {
+    email: { value: '', error: '', touched: false, hasError: true },
+    password: { value: '', error: '', touched: false, hasError: true },
+    isFormValid: false,
+  };
+
+  const formReducer = (state, action) => {
+    switch (action.type) {
+      case UPDATED_FORM:
+        const { name, value, hasError, error, touched, isFormValid } = action.data;
+        return {
+          ...state,
+          [name]: {
+            ...state[name],
+            value,
+            hasError,
+            error,
+            touched,
+          },
+          isFormValid,
+        };
+      default:
+        return state;
+    }
+  };
+  const [formState, dispatchFormState] = useReducer(formReducer, initialState);
+
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
-    dispatch(signIn(email, password));
+    dispatch(signIn(formState.email.value, formState.password.value));
   };
+  const onHandleChangeInput = (value, type) => {
+    onInputChange(type, value, dispatchFormState, formState);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <KeyboardAvoidingView
@@ -37,28 +67,33 @@ function Login({ navigation }) {
           <Text style={Styles.welcomeSubtitle}>Please login with your account.</Text>
           <View style={Styles.inputContainer}>
             <Ionicons name="mail-outline" style={Styles.iconInput} />
-            <TextInput
-              style={Styles.inputText}
-              placeholder="Email ID"
+            <Input
+              placeholder="Email"
               placeholderTextColor={COLORS.darkGray}
               keyboardType="email-address"
+              maxLength={50}
               autoCapitalize="none"
               autoCorrect={false}
-              value={email}
-              onChangeText={(text) => setEmail(text)}
+              value={formState.email.value}
+              hasError={formState.email.hasError}
+              error={formState.email.error}
+              touched={formState.email.touched}
+              onChangeText={(text) => onHandleChangeInput(text, 'email')}
             />
           </View>
           <View style={Styles.inputContainer}>
             <Ionicons name="key" style={Styles.iconInput} />
-            <TextInput
-              style={Styles.inputText}
+            <Input
               placeholder="Password"
               placeholderTextColor={COLORS.darkGray}
               secureTextEntry
+              maxLength={15}
               autoCapitalize="none"
               autoCorrect={false}
-              value={password}
-              onChangeText={(text) => setPassword(text)}
+              hasError={formState.password.hasError}
+              error={formState.password.error}
+              touched={formState.password.touched}
+              onChangeText={(text) => onHandleChangeInput(text, 'password')}
             />
           </View>
           <TouchableOpacity style={Styles.loginButton} onPress={handleSubmit}>

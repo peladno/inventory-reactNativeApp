@@ -18,11 +18,7 @@ export const Styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     margin: 15,
-    width: '75%',
-  },
-  inputText: {
-    fontSize: 20,
-    fontFamily: 'nunito-regular',
+    width: 300,
   },
   iconInput: {
     fontSize: 25,
@@ -35,7 +31,7 @@ export const Styles = StyleSheet.create({
   },
   loginButton: {
     alignItems: 'center',
-    width: '75%',
+    width: 300,
     backgroundColor: COLORS.primary,
     padding: 15,
     borderRadius: 10,

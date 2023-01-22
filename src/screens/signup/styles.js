@@ -35,10 +35,6 @@ export const Styles = StyleSheet.create({
     paddingEnd: 10,
     color: COLORS.darkGray,
   },
-  inputText: {
-    fontSize: 20,
-    fontFamily: 'nunito-regular',
-  },
   registerButton: {
     alignItems: 'center',
     width: '75%',

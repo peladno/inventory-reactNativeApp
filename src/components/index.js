@@ -5,3 +5,4 @@ export { default as AddButton } from './addButton/index';
 //export { default as Product } from './Product/index';
 export { default as AddProductForm } from './addProductForm/index';
 export { default as ProductList } from './productList/index';
+export { default as Input } from './input';
