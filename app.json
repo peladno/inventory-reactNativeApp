@@ -12,20 +12,23 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/8e9ce3de-49e2-4ca4-ad08-08e4c02d4c71"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "jsEngine": "jsc"
+      "jsEngine": "jsc",
+      "bundleIdentifier": "com.peladno.inventoryapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.peladno.inventoryapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -33,8 +36,11 @@
     "jsEngine": "hermes",
     "extra": {
       "eas": {
-        "projectId": "bbb028d4-bf34-4d96-8298-48d0a20256be"
+        "projectId": "8e9ce3de-49e2-4ca4-ad08-08e4c02d4c71"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
     }
   }
 }
