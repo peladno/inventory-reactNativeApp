@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import { COLORS } from '../../constants/themes/colors';
 export const Styles = StyleSheet.create({
@@ -16,5 +15,11 @@ export const Styles = StyleSheet.create({
   },
   locationText: {
     fontSize: 20,
+  },
+  noLocationText: {
+    fontSize: 18,
+    paddingBottom: 10,
+    color: COLORS.text,
+    fontFamily: 'nunito-regular',
   },
 });
