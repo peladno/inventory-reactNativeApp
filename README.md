@@ -1,3 +1,7 @@
+# Inventory app
+
+![Inventory App](/assets/inventoryapp.png)
+
 ## About this project:
 
 This project is a small inventory mobile app made with React native (expo) and to register and authentication was made Firebase, and SQL lite as a local backend. You can take picktures and access to the gps to pick the location.
@@ -7,7 +11,7 @@ This project is a small inventory mobile app made with React native (expo) and t
 To deploy this project run
 
 ```bash
-  git clone https://github.com/peladno/eshop-project.git
+  git clone https://github.com/peladno/inventory-reactNativeApp.git
   npm install
   npm start
 ```
